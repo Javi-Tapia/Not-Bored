@@ -19,9 +19,9 @@
             android:layout_width="340dp"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="Activities"
+            android:text="@string/activities_title"
             android:textColor="@color/black"
-            android:textSize="40dp"
+            android:textSize="40sp"
             android:textStyle="bold" />
 
         <Button
@@ -29,14 +29,15 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:backgroundTint="#0c91e8"
-            android:drawableLeft="@android:drawable/ic_menu_agenda"
+            android:drawableStart="@android:drawable/ic_menu_agenda"
             android:gravity="center" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/itemActivite"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:id="@+id/rvActivites"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />

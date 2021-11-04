@@ -7,12 +7,9 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-<<<<<<< HEAD
     <color name="header">#0c91e8</color>
-=======
     <color name="app_title_color">#0288D1</color>
     <color name="general_background_color">#C2ECFA</color>
     <color name="background_start_button">#1175CC</color>
     <color name="text_terms_and_conditions">#001375</color>
->>>>>>> 41d546cd2b265839b7d7d71f22792ee454275533
 </resources>
