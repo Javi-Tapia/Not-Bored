@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
     private fun setListeners() {
         binding.btnStart.setOnClickListener {
             if (it.isEnabled) {
-                val intent = Intent(this, ActivitiesActivity::class.java).apply {
+                val intent = Intent(this, Categories::class.java).apply {
                     putExtra("participants", binding.etParticipantsInput.text.toString())
                 }
                 startActivity(intent)
