@@ -11,6 +11,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.view.isInvisible
+import com.example.notbored.R
 import com.example.notbored.utils.*
 import com.example.notbored.data.APIService
 import com.example.notbored.data.Response
@@ -83,8 +84,8 @@ class SuggestionActivity : AppCompatActivity() {
             val response: Response? = call.body()
 
             runOnUiThread {
-                if (call.isSuccessful) {
-                    val price: Int = response?.price?.times(10)!!.toInt()
+                if (call.isSuccessful && response?.activity != null) {
+                    val price: Int = response.price.times(10).toInt()
                     binding.tvTittle.text = response.activity
                     binding.tvParticipants.text = response.participants.toString()
                     binding.tvCategory.text = response.type
@@ -95,6 +96,8 @@ class SuggestionActivity : AppCompatActivity() {
                         in 4..6 -> binding.tvPrice.text = MEDIUM
                         in 7..10 -> binding.tvPrice.text = HIGH
                     }
+                } else {
+                    binding.tvTittle.text = getString(R.string.error_message_call)
                 }
                 progressDialog.dismissDialog()
             }
@@ -105,8 +108,4 @@ class SuggestionActivity : AppCompatActivity() {
         return Retrofit.Builder().baseUrl("https://www.boredapi.com/api/activity/")
             .addConverterFactory(GsonConverterFactory.create()).build()
     }
-
-
-
-
 }

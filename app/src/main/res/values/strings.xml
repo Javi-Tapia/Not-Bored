@@ -37,4 +37,5 @@
     <string name="participants_quantity">Participants:</string>
     <string name="price_description">Price:</string>
     <string name="btn_try_another">Try another</string>
+    <string name="error_message_call">¡Lo siento! No hemos encontrado ninguna actividad.</string>
 </resources>
