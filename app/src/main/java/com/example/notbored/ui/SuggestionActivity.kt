@@ -3,6 +3,7 @@ package com.example.notbored.ui
 import android.app.ProgressDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.preference.PreferenceManager
 import android.util.Log
 import android.widget.Button
@@ -14,6 +15,7 @@ import com.example.notbored.utils.*
 import com.example.notbored.data.APIService
 import com.example.notbored.data.Response
 import com.example.notbored.databinding.ActivitySuggestionBinding
+
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -23,7 +25,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class SuggestionActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySuggestionBinding
-    private lateinit var progressDialog: ProgressDialog
+    private lateinit var progressDialog: LoadingDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,28 +35,16 @@ class SuggestionActivity : AppCompatActivity() {
         setSupportActionBar(binding.myToolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = ""
+        progressDialog = LoadingDialog(this)
 
         val category = intent.getStringExtra("category")
-
-        val prefs = PreferenceManager.getDefaultSharedPreferences(this)
+        val prefs = this.getSharedPreferences (key,  MODE_PRIVATE )
         val participants = prefs.getInt(key, DEFUALT_PARTICIPANTS)
 
         // Draw category name
         binding.tvSuggestion.text = category
-
         binding.btnTryAnother.setOnClickListener {
             Log.i("SUGGESTION ACTIVITY", "Try Another button was pressed")
-            request(category, participants)
-        }
-
-        if (category.equals("random")) binding.lyCategory.isInvisible = false
-
-        progressDialog = ProgressDialog(this)
-        progressDialog.setMessage("Application is loading, please wait")
-
-        request(category, participants)
-
-        binding.btnTryAnother.setOnClickListener {
             request(category, participants)
         }
 
@@ -72,7 +62,7 @@ class SuggestionActivity : AppCompatActivity() {
         query?.let {
             Log.i("SUGGESTION ACTIVITY", it)
             if (it.isNotEmpty()) {
-                progressDialog.show()
+                progressDialog.startLoadingDialog()
                 searchActivity(query.lowercase(), participants)
             }
         }
@@ -106,7 +96,7 @@ class SuggestionActivity : AppCompatActivity() {
                         in 7..10 -> binding.tvPrice.text = HIGH
                     }
                 }
-                progressDialog.dismiss()
+                progressDialog.dismissDialog()
             }
         }
     }
@@ -115,4 +105,8 @@ class SuggestionActivity : AppCompatActivity() {
         return Retrofit.Builder().baseUrl("https://www.boredapi.com/api/activity/")
             .addConverterFactory(GsonConverterFactory.create()).build()
     }
+
+
+
+
 }

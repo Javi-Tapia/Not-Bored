@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
             if (it.isEnabled) {
                 val intent = Intent(this, CategoriesActivity::class.java)
                 val participants = binding.etParticipantsInput.text.toString()
-                val prefs = PreferenceManager.getDefaultSharedPreferences(this)
+                val prefs = this .getSharedPreferences (key,  MODE_PRIVATE )
                 val editor = prefs.edit()
                 editor.putInt(key,participants.toInt())
                 editor.apply()
