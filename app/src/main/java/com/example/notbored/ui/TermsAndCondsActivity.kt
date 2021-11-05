@@ -1,4 +1,4 @@
-package com.example.notbored
+package com.example.notbored.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

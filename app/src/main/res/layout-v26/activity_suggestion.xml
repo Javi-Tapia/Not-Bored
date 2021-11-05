@@ -6,17 +6,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities">
+    tools:context=".ui.SuggestionActivity">
 
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/my_toolbar"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBar"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:backgroundTint="#d56062"
-        android:elevation="4dp"
-        android:background="@color/cardview_dark_background"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/my_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/cardview_dark_background"
+            android:backgroundTint="#d56062"
+            app:navigationIcon="@drawable/ic_arrow_back">
+
+            <TextView
+                android:id="@+id/tvSuggestion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/roboto_bold"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                tools:text="@string/app_name" />
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -28,38 +48,42 @@
 
 
         <TextView
-            android:id="@+id/tv_tittle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:padding="8dp"
+            android:layout_gravity="center"
             android:layout_marginBottom="30dp"
-            android:gravity="center"
-            android:textSize="40sp"
+            android:fontFamily="@font/roboto_bold"
+            android:maxLines="2"
+            android:textColor="@color/black"
+            android:textSize="35sp"
+            android:textAlignment="center"
+            android:autoSizeTextType="uniform"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.473"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.164" />
+            tools:text="Practice code in your favorite program and then write a book" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity=""
             android:orientation="horizontal">
 
 
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:src="@drawable/icon_users" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:text="Participants: "
+                android:layout_marginStart="10dp"
+                android:text="@string/participants_quantity"
                 android:textSize="25sp" />
 
 
@@ -68,9 +92,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="50dp"
-                android:text="0"
-                android:textSize="25sp" />
+                android:layout_marginStart="50dp"
+                android:textSize="25sp"
+                tools:text="0" />
 
 
         </LinearLayout>
@@ -85,15 +109,15 @@
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:src="@drawable/icon_dollar" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:text="Price: "
+                android:layout_marginStart="10dp"
+                android:text="@string/price_description"
                 android:textSize="25sp" />
 
 
@@ -102,9 +126,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="50dp"
-                android:text="0"
-                android:textSize="25sp" />
+                android:layout_marginStart="50dp"
+                android:textSize="25sp"
+                tools:text="0" />
 
 
         </LinearLayout>
@@ -114,14 +138,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:visibility="invisible"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="invisible">
 
 
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginLeft="15dp"
+                android:layout_marginStart="15dp"
                 android:src="@drawable/icon_category" />
 
             <TextView
@@ -129,8 +153,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:textSize="25sp" />
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/roboto_bold"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                tools:text="Category" />
 
 
         </LinearLayout>
@@ -142,8 +169,8 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:gravity="center_horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -158,9 +185,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:backgroundTint="#d56062"
             android:layout_marginRight="50dp"
-            android:text="Try another" />
+            android:backgroundTint="#d56062"
+            android:text="@string/btn_try_another" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,16 +11,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NotBored">
         <activity
-            android:name=".Categories"
+            android:name=".ui.CategoriesActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities"
+            android:name=".ui.SuggestionActivity"
             android:exported="false" />
         <activity
-            android:name=".TermsAndCondsActivity"
+            android:name=".ui.TermsAndCondsActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

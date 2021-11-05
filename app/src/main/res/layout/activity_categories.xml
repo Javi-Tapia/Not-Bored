@@ -19,19 +19,19 @@
             android:layout_width="340dp"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="Activities"
+            android:text="@string/activities_title"
             android:textColor="@color/black"
-            android:textSize="30dp"
+            android:textSize="30sp"
             android:textStyle="bold" />
 
         <ImageButton
             android:id="@+id/btn_random"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:scaleType="centerCrop"
             android:backgroundTint="#0c91e8"
-            android:src="@drawable/icon_random"
-            android:gravity="center" />
+            android:gravity="center"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon_random" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

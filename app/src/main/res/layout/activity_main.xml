@@ -5,17 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/general_background_color"
-    tools:context=".MainActivity">
+    tools:context=".ui.MainActivity">
 
     <TextView
         android:id="@+id/tvInitialAppTitle"
+        style="@style/app_name_style"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.085"
-        tools:text="@string/app_name"
-        style="@style/app_name_style" />
+        tools:text="@string/app_name" />
 
     <TextView
         android:id="@+id/tvParticipants"
@@ -24,8 +24,8 @@
         android:layout_marginTop="140dp"
         android:fontFamily="@font/roboto_bold"
         android:text="@string/participants"
-        android:textStyle="bold"
         android:textSize="@dimen/participants_text_size"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.172"
         app:layout_constraintStart_toStartOf="parent"
