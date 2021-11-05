@@ -6,7 +6,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/general_background_color"
     tools:context=".ui.SuggestionActivity">
+
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBar"
@@ -20,8 +22,8 @@
             android:id="@+id/my_toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/cardview_dark_background"
-            android:backgroundTint="#d56062"
+            android:background="@color/header"
+            android:backgroundTint="@color/header"
             app:navigationIcon="@drawable/ic_arrow_back">
 
             <TextView
@@ -37,7 +39,6 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -48,27 +49,22 @@
 
 
         <TextView
-            android:id="@+id/tv_title"
+            android:id="@+id/tv_tittle"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:padding="8dp"
-            android:layout_gravity="center"
             android:layout_marginBottom="30dp"
-            android:fontFamily="@font/roboto_bold"
-            android:maxLines="2"
-            android:textColor="@color/black"
+            android:gravity="center"
             android:textSize="35sp"
-            android:textAlignment="center"
-            android:autoSizeTextType="uniform"
+            android:padding="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Practice code in your favorite program and then write a book" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity=""
             android:orientation="horizontal">
 
 
@@ -94,7 +90,7 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="50dp"
                 android:textSize="25sp"
-                tools:text="0" />
+                tools:text="0"/>
 
 
         </LinearLayout>
@@ -138,8 +134,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:orientation="horizontal"
-            android:visibility="invisible">
+            android:visibility="invisible"
+            android:orientation="horizontal">
 
 
             <ImageView
@@ -154,10 +150,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="10dp"
-                android:fontFamily="@font/roboto_bold"
-                android:textColor="@color/black"
-                android:textSize="25sp"
-                tools:text="Category" />
+                android:textSize="25sp" />
 
 
         </LinearLayout>
@@ -185,8 +178,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
+            android:backgroundTint="@color/header"
             android:layout_marginRight="50dp"
-            android:backgroundTint="#d56062"
+            android:textColor="@color/white"
             android:text="@string/btn_try_another" />
 
     </LinearLayout>

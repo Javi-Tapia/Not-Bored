@@ -1,11 +1,14 @@
 package com.example.notbored.ui
 
+import android.app.ProgressDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.util.Log
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.view.isInvisible
 import com.example.notbored.utils.*
 import com.example.notbored.data.APIService
@@ -20,11 +23,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class SuggestionActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySuggestionBinding
-    private lateinit var tvTitle: TextView
-    private lateinit var tvPrice: TextView
-    private lateinit var tvParticipants: TextView
-    private lateinit var tvCategory: TextView
-    private lateinit var tvSuggestion: TextView
+    private lateinit var progressDialog: ProgressDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,29 +34,31 @@ class SuggestionActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = ""
 
-        tvTitle = binding.tvTitle
-        tvPrice = binding.tvPrice
-        tvParticipants = binding.tvParticipants
-        tvCategory = binding.tvCategory
-        tvSuggestion = binding.tvSuggestion
+        val category = intent.getStringExtra("category")
 
-        // Get bundle of intent from CategoriesActivity
-        val bundle: Bundle? = intent.extras
-        val category = bundle?.getString("category")
-        val participants = bundle?.getInt("participants") ?: DEFUALT_PARTICIPANTS
+        val prefs = PreferenceManager.getDefaultSharedPreferences(this)
+        val participants = prefs.getInt(key, DEFUALT_PARTICIPANTS)
 
         // Draw category name
-        tvSuggestion.text = category
+        binding.tvSuggestion.text = category
 
-        val btnTryAnother: Button = binding.btnTryAnother
-        val one: LinearLayout = binding.lyCategory
-
-        btnTryAnother.setOnClickListener {
+        binding.btnTryAnother.setOnClickListener {
             Log.i("SUGGESTION ACTIVITY", "Try Another button was pressed")
             request(category, participants)
         }
 
-        if (category.equals("random")) one.isInvisible = false
+        if (category.equals("random")) binding.lyCategory.isInvisible = false
+
+        progressDialog = ProgressDialog(this)
+        progressDialog.setMessage("Application is loading, please wait")
+
+        request(category, participants)
+
+        binding.btnTryAnother.setOnClickListener {
+            request(category, participants)
+        }
+
+        if (category.equals("Random")) binding.lyCategory.isInvisible = false
 
         request(category, participants)
     }
@@ -71,6 +72,7 @@ class SuggestionActivity : AppCompatActivity() {
         query?.let {
             Log.i("SUGGESTION ACTIVITY", it)
             if (it.isNotEmpty()) {
+                progressDialog.show()
                 searchActivity(query.lowercase(), participants)
             }
         }
@@ -93,17 +95,18 @@ class SuggestionActivity : AppCompatActivity() {
             runOnUiThread {
                 if (call.isSuccessful) {
                     val price: Int = response?.price?.times(10)!!.toInt()
-                    tvTitle.text = response.activity
-                    tvParticipants.text = response.participants.toString()
-                    tvCategory.text = response.type
+                    binding.tvTittle.text = response.activity
+                    binding.tvParticipants.text = response.participants.toString()
+                    binding.tvCategory.text = response.type
 
                     when (price) {
-                        0 -> tvPrice.text = FREE
-                        in 1..3 -> tvPrice.text = LOW
-                        in 4..6 -> tvPrice.text = MEDIUM
-                        in 7..10 -> tvPrice.text = HIGH
+                        0 -> binding.tvPrice.text = FREE
+                        in 1..3 -> binding.tvPrice.text = LOW
+                        in 4..6 -> binding.tvPrice.text = MEDIUM
+                        in 7..10 -> binding.tvPrice.text = HIGH
                     }
                 }
+                progressDialog.dismiss()
             }
         }
     }

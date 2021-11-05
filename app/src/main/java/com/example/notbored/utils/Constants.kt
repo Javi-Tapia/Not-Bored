@@ -5,3 +5,4 @@ const val LOW = "Low"
 const val MEDIUM = "Medium"
 const val HIGH = "High"
 const val DEFUALT_PARTICIPANTS = 2
+const val key = "PARTICIPANTS"

@@ -3,6 +3,7 @@ package com.example.notbored.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.core.widget.doAfterTextChanged
@@ -13,6 +14,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private val viewModel by viewModels<MainViewModel>()
+    private val key = "PARTICIPANTS"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,9 +44,12 @@ class MainActivity : AppCompatActivity() {
     private fun setListeners() {
         binding.btnStart.setOnClickListener {
             if (it.isEnabled) {
-                val intent = Intent(this, CategoriesActivity::class.java).apply {
-                    putExtra("participants", binding.etParticipantsInput.text.toString())
-                }
+                val intent = Intent(this, CategoriesActivity::class.java)
+                val participants = binding.etParticipantsInput.text.toString()
+                val prefs = PreferenceManager.getDefaultSharedPreferences(this)
+                val editor = prefs.edit()
+                editor.putInt(key,participants.toInt())
+                editor.apply()
                 startActivity(intent)
                 finish()
             }
